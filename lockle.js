@@ -9,9 +9,9 @@ function keyPress(event) {
     if (event.key == "Enter") {
         let inputted_text = numInput.value;
         if (validate(inputted_text)) {
+            tries++;
             compareStrict(inputted_text, solution);
             numInput.value = '';
-            tries++;
         }
     }
 }
