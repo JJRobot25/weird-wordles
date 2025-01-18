@@ -1,0 +1,102 @@
+:root {
+    --color-bg: white;
+
+    --color-text: black;
+    --color-wordle-text: white;
+
+    --color-not: #484848;
+    --color-contains: #b59c29;
+    --color-correct: green;
+}
+
+body {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+h1 > span, .link-container a {
+    transition: all .4s;
+}
+h1 > span:hover, .link-container a:hover {
+    font-size: 1.1em;
+}
+
+.link-container {
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.link-container a {
+    color: black;
+    text-decoration: none;
+
+    width: 30%;
+    padding: 1em;
+    border-radius: .7em;
+    background-color: dimgray;
+    margin: .3em;
+}
+
+.link-container a:hover {
+    background-color: darkgray;
+}
+
+input {
+    width: 50%;
+    padding: 12px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid gray;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+input:invalid {
+    background-color: lightcoral;
+}
+
+#words-holder p {
+    margin-block-start: 3px;
+    margin-block-end: 3px;;
+}
+
+#words-holder span {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--color-wordle-text);
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    border: .5em solid var(--color-not);
+    background-color: var(--color-not);
+    border-radius: .3em;
+    margin: 3px;
+
+    text-align: center;
+}
+
+#words-holder span.contains {
+    background-color: var(--color-contains);
+    border-color: var(--color-contains);
+}
+
+#words-holder span.correct {
+    background-color: var(--color-correct);
+    border-color: var(--color-correct);
+}
+
+.win {
+    color: limegreen;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+    input, .link-container a {
+        width: 80%;
+    }
+}

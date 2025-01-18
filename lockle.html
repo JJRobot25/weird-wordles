@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Lockle - Weird Worldes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Lockle</h1>
+    <p>Wordle, but a combination lock!</p>
+    <p>Input 4 numbers:</p>
+    
+    <hr>
+
+    <input type="text" id="numInput" maxlength="4" pattern="\d{4,4}" placeholder="Input number" onkeydown="keyPress(event)">
+
+    <hr>
+
+    <div id="words-holder">
+        
+    </div>
+
+    <script src="lockle.js"></script>
+</body>
