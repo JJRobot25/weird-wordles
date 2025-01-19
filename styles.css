@@ -1,24 +1,37 @@
 :root {
     --color-bg: white;
 
-    --color-text: black;
+    --color-text: #1b1b1b;
     --color-wordle-text: white;
 
     --color-not: #484848;
     --color-contains: #b59c29;
     --color-correct: green;
+
+    --color-invalid: lightcoral;
+
+    --color-win: limegreen;
+
+    --border: #696969;
+
+    --link: #888888;
+    --link-hover: #b6b6b6;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #1b1b1b;
+        --color-text: white;
+    }
 }
 
 body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
     text-align: center;
     font-family: sans-serif;
-}
 
-.link-container a {
-    transition: all .4s;
-}
-.link-container a:hover {
-    font-size: 1.1em;
+    margin: 8px 10%;
 }
 
 .link-container {
@@ -30,21 +43,25 @@ body {
 
 .link-container a {
     color: black;
+    font-weight: bold;
     text-decoration: none;
 
     width: 30%;
     padding: 1em;
     border-radius: .7em;
-    background-color: #888888;
+    background-color: var(--link);
     margin: .3em;
+
+    transition: all .4s;
 }
 
 .link-container a:hover {
-    background-color: #b6b6b6;
+    background-color: var(--link-hover);
+    font-size: 1.1em;
 }
 
 hr {
-    border: gray solid 1px;
+    border: var(--border) solid 1px;
 }
 
 input {
@@ -52,14 +69,14 @@ input {
     padding: 12px 5px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid gray;
+    border: 1px solid var(--border);
     border-radius: 4px;
     box-sizing: border-box;
     text-align: center;
 }
 
 input:invalid {
-    background-color: lightcoral;
+    background-color: var(--color-invalid);
 }
 
 #words-holder p {
@@ -107,7 +124,7 @@ input:invalid {
 }
 
 .win {
-    color: limegreen;
+    color: var(--color-win);
     font-size: 1.7em;
     font-weight: bold;
 }
