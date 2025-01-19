@@ -130,6 +130,9 @@ input:invalid {
 }
 
 @media screen and (max-width: 700px) {
+    body {
+        margin: 8px 3%;
+    }
     input, .link-container a {
         width: 80%;
     }
