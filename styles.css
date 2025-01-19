@@ -14,10 +14,10 @@ body {
     font-family: sans-serif;
 }
 
-h1 > span, .link-container a {
+.link-container a {
     transition: all .4s;
 }
-h1 > span:hover, .link-container a:hover {
+.link-container a:hover {
     font-size: 1.1em;
 }
 
@@ -35,12 +35,16 @@ h1 > span:hover, .link-container a:hover {
     width: 30%;
     padding: 1em;
     border-radius: .7em;
-    background-color: dimgray;
+    background-color: #888888;
     margin: .3em;
 }
 
 .link-container a:hover {
-    background-color: darkgray;
+    background-color: #b6b6b6;
+}
+
+hr {
+    border: gray solid 1px;
 }
 
 input {
@@ -77,6 +81,19 @@ input:invalid {
     margin: 3px;
 
     text-align: center;
+}
+
+#words-holder.long span {
+    font-size: 1em;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    border-radius: .2em;
+    margin: 2px;
+}
+
+#words-holder p {
+    margin: 2px;
 }
 
 #words-holder span.contains {
