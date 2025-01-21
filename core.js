@@ -25,6 +25,8 @@ if (title == 'Lockle') {
     solution = randomPassword(12, wordleType);
 }
 
+const length = solution.length;
+
 let tries = 0;
 
 console.log(solution);
@@ -80,19 +82,69 @@ function validate (input) {
     return toReturn;
 }
 
-function compare(input, correct) {
+function compare(input) {
+    let outputStr = ''; // C = correct, c = contains, _ = empty
+    let timesUsedInSolution = new Map();
+    let timesUsedInInput = new Map();
     let toReturn = '<p>';
-    for (let i = 0; i < correct.length; i++) {
-        if (input[i] == correct[i]) {
+
+    // Add used times to timesUsedInSolution for each char in solution, and 0 to timesUsedInInput for each char in input
+    for (let i = 0; i < length; i++) {
+        if (!timesUsedInSolution.has(solution[i])) {
+            // Create new k-v
+            timesUsedInSolution.set(solution[i], 1)
+        } else {
+            // Increase v
+            v = timesUsedInSolution.get(solution[i]) + 1;
+            timesUsedInSolution.set(solution[i], v);
+        }
+
+        timesUsedInInput.set(input[i], 0);
+    }
+
+    // Check for corrects, increase char uses in timesUsedInInput
+    for (let i = 0; i < length; i++) {
+        if (input[i] == solution[i]) {
+            outputStr += 'C';
+            if (!timesUsedInInput.has(input[i])) {
+                // Create new k-v
+                timesUsedInInput.set(input[i], 1)
+            } else {
+                // Increase v
+                v = timesUsedInInput.get(input[i]) + 1;
+                timesUsedInInput.set(input[i], v);
+            }
+        } else {
+            outputStr += '_';
+        }
+    }
+    
+    // Check for contains, if timesUsedInInput < getUsedAmount(), and increase timesUsed
+    for (let i = 0; i < length; i++) {
+        if (solution.includes(input[i]) && timesUsedInInput.get(input[i]) < timesUsedInSolution.get(input[i])) {
+            outputStr =  setCharAt(outputStr, i, 'c');
+            // Increase v
+            v = timesUsedInInput.get(input[i]) + 1;
+            timesUsedInInput.set(input[i], v);
+        }
+    }
+
+
+    // Create spans
+    for (let i = 0; i < length; i++) {
+        if (outputStr[i] == 'C') {
             toReturn += spanCreator(input[i], 'correct');
-        } else if (correct.includes(input[i])) {
+        } else if (outputStr[i] == 'c') {
             toReturn += spanCreator(input[i], 'contains');
         } else {
             toReturn += spanCreator(input[i], '');
         }
     }
     toReturn += "</p>";
-    if (input == correct) {
+
+    console.log(outputStr);
+
+    if (input == solution) {
         toReturn += '<br><p class="win">You won! Tries: '+ tries + '</p>';
         textInput.readOnly = true;
     }
@@ -141,4 +193,8 @@ function randomPassword(length, type) {
         
     }
     return result;
+}
+
+function setCharAt(str, index, char) {
+    return str.substring(0,index) + char + str.substring(index+1);
 }
